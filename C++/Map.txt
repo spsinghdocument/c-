@@ -1,0 +1,19 @@
+//=======================================string ==================
+
+    std::string s ="Saurabhpratapsingh";
+
+     cout<< s <<endl;
+//====================================================map =======
+#include <map>
+
+using namespace std;
+
+typedefstd::map<std::string, std::string>TStrStrMap;
+int main()
+{
+
+TStrStrMapTst;
+     Tst["5234"] = "Arif khan";
+     cout<<Tst["5234"] <<endl ;
+}
+

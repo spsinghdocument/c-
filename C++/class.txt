@@ -1,0 +1,63 @@
+//========================================Main ///////=============
+
+
+#include <iostream>
+#include "SP.h"
+using namespace std;
+
+int main()
+{
+SP o;
+A o2;
+o2.f2();
+o.fun();
+    cout << "Hello world!" << endl;
+    return 0;
+}
+
+//==========================sp class add === sp.h =======
+#ifndef SP_H
+#define SP_H
+#include<iostream>
+using namespace std;
+class SP
+{
+    public:
+
+        void fun();
+         SP();
+
+        virtual ~SP();
+    protected:
+    private:
+};
+class A
+{
+public:
+    void f2()
+    {
+       std:: cout<<"endl f2\n";
+    }
+};
+
+#endif // SP_H
+//==========================================================sp.cpp =========
+
+#include "SP.h"
+#include<iostream>
+SP::SP()
+{
+    //ctor
+}
+
+SP::~SP()
+{
+    //dtor
+}
+void  SP::fun()
+{
+    std::cout<<"hello\n";
+}
+/========================================================
+//
+

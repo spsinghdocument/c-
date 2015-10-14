@@ -1,0 +1,189 @@
+#include <iostream>
+
+
+using namespace std;
+#pragma pack(2)
+ struct Message_Header
+{
+short TransactionCode;
+int LogTime;
+char AlphaChar[2];
+int TraderId;
+    short ErrorCode;
+char Timestamp[8];
+char Timestamp1[8];
+char Timestamp2[8];
+short MessageLength;
+};
+#pragma pack(2)
+ struct ST_BROKER_ELIGIBILITY_PER_MKT
+{
+int Reserved;
+char market;
+char Reserved2;
+};
+
+
+#pragma pack(2)
+struct SIGN_ON_REQUEST_IN
+{
+Message_Header obj;
+char Password [8];
+char NewPassword [8];
+char TraderName [26];
+int LastPasswordChangeDate;
+char BrokerId [5];
+char Reserved;
+short BranchId;
+int VersionNumber;
+int Batch2StartTime;
+char HostSwitchContext;
+char Colour [50];
+char Reserved2;
+short UserType;
+double SequenceNumber;
+char WsClassName [14];
+char BrokerStatus;
+char ShowIndex;
+ST_BROKER_ELIGIBILITY_PER_MKT obj_ST_BROKER_ELIGIBILITY_PER_MKT;
+short MemberType;
+char ClearingStatus;
+char BrokerName [25];
+};
+
+#pragma pack(2)
+struct SIGN_ON_REQUEST_OUT//size not match.....
+{
+Message_Header obj;
+int UserId;
+char Password [8];
+char NewPassword [8];
+char TraderName [26];
+int LastPasswordChangeDate;
+char BrokerId [5];
+char Reserved;
+short BranchId;
+int VersionNumber;
+int EndTime;
+char Reserved2;
+char colour[50];
+char Reserved3;
+short UserType;
+double SequenceNumber;
+char Reserved4 [14];
+char BrokerStatus;
+char ShowIndex;
+ST_BROKER_ELIGIBILITY_PER_MKT obj_ST_BROKER_ELIGIBILITY_PER_MKT;
+short MemberType;
+char ClearingStatus;
+char BrokerName [25];
+};
+
+#pragma pack(2)
+struct SYSTEM_INFORMATION_IN
+{
+    Message_Header obj;
+    int LastUpdatePortfolioTime;
+};
+
+#pragma pack(2)
+ struct ST_MARKET_STATUS
+{
+
+short Normal;
+short Oddlot;
+short Spot;
+short Auction;
+};
+
+#pragma pack(2)
+ struct ST_EX_MARKET_STATUS
+{
+
+short Normal;
+short Oddlot;
+short Spot;
+short Auction;
+};
+
+#pragma pack(2)
+ struct ST_PL_MARKET_STATUS
+{
+
+short Normal;
+short Oddlot;
+short Spot;
+short Auction;
+};
+
+#pragma pack(2)
+ struct ST_STOCK_ELIGIBLE_INDICATORS
+{
+/*Reserved: 5 BIT
+Books Merged : 1 BIT
+Minimum Fill: 1 BIT
+AON: 1 BIT*/
+// in above comment used 8 bits so i am using below one byte .....
+char Reserved;
+char Reserved2;
+};
+
+#pragma pack(2)
+ struct MS_SYSTEM_INFO_DATA
+{
+Message_Header header_obj;
+ST_MARKET_STATUS st_obj;
+ST_EX_MARKET_STATUS st_ex_obj;
+ST_PL_MARKET_STATUS st_pl_obj;
+char UpdatePortfolio;
+int MarketIndex;
+short DefaultSettlementPeriod_normal;
+short DefaultSettlementPeriod_spot;
+short DefaultSettlementPeriod_auction;
+short CompetitorPeriod;
+short SolicitorPeriod;
+short WarningPercent;
+short VolumeFreezePercent;
+short SnapQuoteTime;
+short Reserved1;
+int BoardLotQuantity;
+int TickSize;
+short MaximumGtcDays;
+ST_STOCK_ELIGIBLE_INDICATORS st_stoc_obj;
+short DisclosedQuantityPercentAllowed;
+int RiskFreeInterestRate;
+
+};
+
+#pragma pack(2)
+ struct MS_UPDATE_LOCAL_DATABASE
+{
+    Message_Header header_obj;
+    int LastUpdateSecurityTime;
+int LastUpdateParticipantTime;
+int LastUpdateInstrumentTime;
+
+int LastUpdateIndexTime;
+char RequestForOpenOrdersMessage;
+char Reserved;
+    ST_MARKET_STATUS st_obj;
+ST_EX_MARKET_STATUS st_pl_obj;
+ST_PL_MARKET_STATUS st_ex_obj;
+};
+
+#pragma pack(2)
+ struct UPDATE_LDB_HEADER
+{
+Message_Header header_obj;
+short Reserved1;
+};
+int main()
+{
+
+    cout<<sizeof(UPDATE_LDB_HEADER)<<endl;
+
+
+    cout << "Hello world!" << endl;
+    return 0;
+}
+
