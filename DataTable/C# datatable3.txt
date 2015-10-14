@@ -1,0 +1,8 @@
+ DataRow dr = Global.Instance.OrdetTable.NewRow();
+
+            dr["Status"] = orderStatus.Rejected.ToString();
+            dr["AccountNumber"] = Encoding.ASCII.GetString(obj.AccountNumber);
+            dr["BookType"] = Enum.GetName(typeof(Enums.BookTypes), IPAddress.HostToNetworkOrder(obj.BookType));
+            dr["BranchId"] = IPAddress.HostToNetworkOrder(obj.BranchId);
+
+ Global.Instance.OrdetTable.Rows.Add(dr);

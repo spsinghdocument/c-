@@ -1,0 +1,156 @@
+//==============================Program========
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication4
+{
+
+    public delegate int EventHandler2<TEventArgs>(object sender, TEventArgs e);
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            EventCreat.EventR.f8();
+            Console.ReadLine();
+        }
+    }
+}
+
+//==================================================EventCreat================
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+
+namespace ConsoleApplication4
+{
+    public class EventCreat
+    {
+        internal event EventHandler<ReadOnlyEventArgs<arif>> SS;
+        internal event EventHandler2<ReadOnlyEventArgs<arif>> SS2;
+        private static readonly EventCreat Insate = new EventCreat();
+
+        public static EventCreat EventR
+        {
+            get { return Insate; }
+
+        }
+
+        public void f8()
+        {
+            arif a = new arif();
+
+            a.ID = 1;
+            a.Name = "arif Khan";
+
+            event_Innvoke obj = new event_Innvoke();
+            SS.Invoke(SS, SS.CreateOnlyEventArgs(a));
+
+     // int a=    SS2.Invoke(SS2,SS2.CreateOnlyEventArgs2(a));
+      Console.WriteLine(SS2.Invoke(SS2, SS2.CreateOnlyEventArgs2(a)));
+           
+      // SS2.CreateOnlyEventArgs2(a);
+
+              
+           
+        }
+
+
+    }
+
+    public class ReadOnlyEventArgs<T> : EventArgs
+    {
+        public ReadOnlyEventArgs(T input)
+        {
+            Parameter = input;
+        }
+
+        public T Parameter
+        {
+            get;
+             set;
+        }
+    }
+    public static class EventHandlerExtensions
+    {
+        public static ReadOnlyEventArgs<T> CreateOnlyEventArgs<T>(this EventHandler<ReadOnlyEventArgs<T>> handler, T input)
+        {
+            return new ReadOnlyEventArgs<T>(input);
+        }
+
+        public static  ReadOnlyEventArgs<T> CreateOnlyEventArgs2<T>(this EventHandler2<ReadOnlyEventArgs<T>> handler, T input)
+        {
+            return new ReadOnlyEventArgs<T>(input);
+        }
+
+
+    }
+
+    //struct arif
+    //{
+    //    public int ID;
+    //    public string Name;
+
+
+    //}
+    public class arif
+    {
+
+        public int ID { get; set; }
+        public string Name { get; set; }
+    }
+
+
+}
+//===================================event_Innvoke========================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication4
+{
+    public class event_Innvoke
+    {
+       
+
+
+        public event_Innvoke()
+        {
+            EventCreat.EventR.SS += f7;
+            EventCreat.EventR.SS += f10;
+            EventCreat.EventR.SS2 += f77;
+        }
+        public void f7(object sender, ReadOnlyEventArgs<arif> e)
+        {
+
+            Console.WriteLine("sourabh = " + e.Parameter.ID);
+            Console.WriteLine("sourabh = " + e.Parameter.Name);
+           // return 5;
+        }
+
+
+
+
+        public void f10(object sender, ReadOnlyEventArgs<arif> e)
+        {
+
+            Console.WriteLine("sourabh pratap singh");
+        }
+
+
+        public int f77(object sender, ReadOnlyEventArgs<arif> e)
+        {
+
+           // Console.WriteLine("sourabh = " + e.Parameter.ID);
+           // Console.WriteLine("sourabh = " + e.Parameter.Name);
+             return 5;
+        }
+
+
+    }
+}

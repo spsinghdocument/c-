@@ -1,0 +1,26 @@
+//========================Delegate
+
+delegate void OnDataArrivedDelegate(Object o, ReadOnlyEventArgs<INTERACTIVE_ONLY_MBP> Stat);
+
+//=====
+
+   if (DGV1.InvokeRequired)
+                {
+                    DGV1.Invoke(new OnDataArrivedDelegate(OnDataArrived), o, new ReadOnlyEventArgs<INTERACTIVE_ONLY_MBP>(Stat.Parameter));
+                    return;
+                }
+
+//=============================================== Event
+
+internal event EventHandler<ReadOnlyEventArgs<LTPTONETBOOK>> FOR_Net_BOOK;
+
+   FOR_Net_BOOK.Raise(FOR_Net_BOOK, FOR_Net_BOOK.CreateReadOnlyArgs(obj));
+//===
+
+    _foSpread.FOR_Net_BOOK += frmNetBook.Instance.Test;
+
+//===
+      public void Test(Object o, ReadOnlyEventArgs<LTPTONETBOOK> obj)
+        {
+i["LTP"] = Math.Round(Convert.ToDouble(IPAddress.HostToNetworkOrder(obj.Parameter.LTP)) / 100, 4);
+}

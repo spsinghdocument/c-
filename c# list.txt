@@ -1,0 +1,39 @@
+ class Program
+    {
+        static void Main(string[] args)
+        {
+            List<sp> s = new List<sp>( );
+            
+            sp osp = new sp();
+            osp.name = "saurabh";
+            osp.LastName = "singh";
+            osp.AGE = 18;
+
+            s.Add(osp);
+            sp osp2 = new sp();
+            osp2.name = "sa";
+            osp2.LastName = "ntsingh";
+            osp2.AGE = 13;
+
+            s.Add(osp2);
+
+            s.ForEach(a=>Console.WriteLine("{0}\t{1}\t{2}",a.AGE,a.name,a.LastName));
+
+            foreach(var a in s)
+            {
+
+                Console.WriteLine(a.LastName);
+            }
+
+            Console.ReadLine();
+
+        }
+    }
+
+     class sp
+    {
+        public string name { get; set; }
+        public string LastName { get; set; }
+        public int AGE { get; set; }
+
+    }

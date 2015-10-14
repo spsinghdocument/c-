@@ -1,0 +1,34 @@
+BeginInvoke((Action)delegate
+            {
+///////////////////////
+                txt.SelectAll();
+            });
+============================
+ this.BeginInvoke((ThreadStart)delegate() { defaultLoadfun(); });
+
+
+ MethodInvoker del = delegate
+                {
+                    DGV.Refresh();                 
+
+                };
+                this.Invoke(del);
+//////////////////////////
+
+ if (this.InvokeRequired)
+            {
+                MethodInvoker del = delegate
+                {
+                    DGV.Refresh();                 
+
+                };
+                this.Invoke(del);
+                return;
+            }
+//====================
+
+   Thread myth = new System.Threading.Thread(delegate()
+            {
+                sp();
+            });
+            myth.Start();

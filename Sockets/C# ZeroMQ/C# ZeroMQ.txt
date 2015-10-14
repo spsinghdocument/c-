@@ -1,0 +1,70 @@
+//================Client -----------------------------------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using ZeroMQ;
+using System.Threading;
+namespace client
+{
+    class Sender
+    {
+        static ZmqContext context;
+        static void Main(string[] args)
+        {
+            context = ZmqContext.Create();
+            using (var socket = context.CreateSocket(SocketType.PAIR))
+            {
+                socket.Connect("tcp://" + "127.0.0.1" + ":" + "8002");
+
+                Console.WriteLine("NET Sender: Started");
+
+                for (int i = 0; i < 100; ++i)
+                {
+                    Thread.Sleep(100);
+
+                    String message = "NET Message " + (i + 1);
+                    Console.WriteLine("NET Sender: Sending (" + message + ")");
+                    socket.SendFrame(new Frame(Encoding.UTF8.GetBytes(message)));
+                }
+
+            }
+            Console.ReadLine();
+        }
+        
+    }
+}
+
+//-----------------------------------------------------------------Serve
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using ZeroMQ;
+
+namespace Server
+{
+    class Receiver
+    {
+        static void Main(string[] args)
+        {
+            using (var context = ZmqContext.Create())
+            using (var socket =
+                        context.CreateSocket(SocketType.PAIR))
+            {
+                socket.Bind("tcp://" + "127.0.0.1" + ":" + "8001");
+
+                Console.WriteLine("NET Receiver: Started");
+
+                while (true)
+                {
+  
+                    Frame request = socket.ReceiveFrame();
+                    String message = Encoding.UTF8.GetString(request);
+                    Console.WriteLine("NET Receiver: Received (" + message + ")");
+                }
+            }
+        }
+    }
+}
+//================================================================

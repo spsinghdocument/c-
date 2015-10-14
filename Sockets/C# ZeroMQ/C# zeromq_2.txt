@@ -1,0 +1,72 @@
+//==================================Client ==================
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using ZeroMQ;
+namespace pub
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            using (var context = ZmqContext.Create())
+            {
+                using (ZmqSocket publisher = context.CreateSocket(SocketType.PUB))
+                {
+                   // publisher.Bind("tcp://*:5563");
+                    publisher.Bind("tcp://192.168.168.97:2222");
+                    while (true)
+                    {
+                        // Write two messages, each with an envelope and content
+                        publisher.SendMore("A", Encoding.Unicode);
+                        publisher.Send("We don't want to see this. A", Encoding.Unicode);
+                        publisher.SendMore("B", Encoding.Unicode);
+                        publisher.Send("We would like to see this. B", Encoding.Unicode);
+                        Thread.Sleep(1000); // avoid flooding the publisher
+                        //string address = publisher.Receive(Encoding.Unicode);
+                        //Console.WriteLine ("reciever="+address);
+                    }
+                }
+            }
+        }
+    }
+}
+//===================================================== Server ===========
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ZeroMQ;
+namespace sub
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            using (var context = ZmqContext.Create())
+            {
+                using (ZmqSocket subscriber = context.CreateSocket(SocketType.SUB))
+                {
+                   // subscriber.Connect("tcp://localhost:5563");
+                    subscriber.Connect("tcp://192.168.168.97:2222");
+                    subscriber.Subscribe(Encoding.Unicode.GetBytes("A"));
+                    //subscriber.SubscribeAll ();
+
+                    while (true)
+                    {
+                        string address = subscriber.Receive(Encoding.Unicode);
+                        string contents = subscriber.Receive(Encoding.Unicode);
+                        Console.WriteLine("{0} : {1}", address, contents);
+                        //subscriber.SendM("World", Encoding.Unicode);
+                    }
+                }
+            }
+        }
+    }
+}

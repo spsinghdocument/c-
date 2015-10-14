@@ -1,0 +1,248 @@
+//=====================Server
+
+using System;
+using NNanomsg.Protocols;
+using System.Net;
+using System.Text;
+using System.Threading;
+using NNanomsg;
+using System.Linq;
+using Structure;
+
+namespace LzoNseFO
+{
+
+    class A
+    {
+        public static void Main()
+        {
+            send2();
+           // send();
+           // sendInput();
+            Console.ReadLine();
+        }
+
+       static void send()
+        {
+
+            PublishSocket PubClient = new PublishSocket();
+            string str = "127.0.0.1" + ":" + "8001";
+            PubClient.Bind("tcp://" + str);
+            Console.WriteLine("Nana Mcast Addrs: " + "tcp://" + str);
+
+
+           while(true)
+           {
+
+            //   string sp = Console.ReadLine();
+               string sp = "ssssssssssssssssssssssssssss";
+               var intBytes = BitConverter.GetBytes(Convert.ToInt64(555));
+               intBytes = intBytes.Concat(Encoding.ASCII.GetBytes(sp)).ToArray();
+               PubClient.Send(intBytes);
+               Console.WriteLine(sp);
+           }
+      
+        }
+        //===================================================================================
+       static void send2()
+       {
+              PublishSocket PubClient = new PublishSocket();
+           string str = "127.0.0.1" + ":" + "8001";
+           PubClient.Bind("tcp://" + str);
+           Console.WriteLine("Nana Mcast Addrs: " + "tcp://" + str);
+           while (true)
+           {
+               Console.WriteLine("PLZ Enter Name");
+               string name = Console.ReadLine();
+               Console.WriteLine("PLZ Enter Last Name");
+               String lastName = Console.ReadLine();
+               Console.WriteLine("PLZ Enter AGE");
+               int age = Convert.ToInt32(Console.ReadLine());
+               strucsp s = new strucsp()
+               {
+                   Name = name,
+                   LastName = lastName,
+                   age = age
+
+               };
+
+
+               var intBytes = BitConverter.GetBytes(Convert.ToInt64(555));
+               byte[] buffer = DataPacket.RawSerialize(s);//==========================
+
+               var e = PubClient.SendImmediate(BitConverter.GetBytes(Convert.ToInt64(555)).Concat(buffer).ToArray());
+               //=====================================================================================
+
+               SubscribeSocket subscriber = new SubscribeSocket();
+               subscriber.Connect("tcp://" + "127.0.0.1" + ":" + "8002");
+               Console.WriteLine("NANOMQ UDP_Reciever Start DataAddress: " + "tcp://" + "127.0.0.1" + ":" + "8002");
+               subscriber.Subscribe(BitConverter.GetBytes(Convert.ToInt64(555)));
+
+               var buffer2 = subscriber.Receive();
+               Console.WriteLine("" + Encoding.ASCII.GetString(buffer2.Skip(8).Take(buffer2.Length).ToArray()));
+
+               //==============================
+          
+           }
+       }
+       
+        //==================================================================
+
+
+       static void sendInput()
+       {
+
+           PublishSocket PubClient = new PublishSocket();
+           string str = "127.0.0.1" + ":" + "8002";
+           PubClient.Bind("tcp://" + str);
+           Console.WriteLine("Nana Mcast Addrs: " + "tcp://" + str);
+           Console.WriteLine("PLZ Inter Number");
+           
+           int line = Convert.ToInt32( Console.ReadLine());
+
+
+           var intBytes = BitConverter.GetBytes(Convert.ToInt64(line));
+
+
+
+           // intBytes = intBytes.Concat(buffer).ToArray(); 
+           Thread.Sleep(10000);
+           var e = PubClient.SendImmediate(intBytes);
+     
+
+       }
+
+    }
+
+//========================================================================
+
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Pack = 1)]
+        public struct strucsp
+    {
+         [System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.ByValTStr, SizeConst = 10)]
+        public string Name;
+         [System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.ByValTStr, SizeConst = 10)]
+        public string LastName;
+
+        public int age;
+
+    }
+
+  }
+//=========================================================== Client
+
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+//using ZeroMQ;
+using NNanomsg.Protocols;
+using Structure;
+
+
+namespace Client
+{
+    class A
+    {
+        public static void Main()
+        {
+             resved2();
+               //  resved();
+            }
+
+
+
+        public static void resved()
+        {
+            try
+            {
+
+                SubscribeSocket subscriber = new SubscribeSocket();
+                subscriber.Connect("tcp://" + "127.0.0.1" + ":" + "8001");
+                Console.WriteLine("NANOMQ UDP_Reciever Start DataAddress: " + "tcp://" + "127.0.0.1" + ":" + "8001");
+                subscriber.Subscribe(BitConverter.GetBytes(Convert.ToInt64(555)));
+              while(true)
+              {
+                  var buffer = subscriber.Receive();
+                Console.WriteLine("" + Encoding.ASCII.GetString(buffer.Skip(8).Take(buffer.Length).ToArray()));
+            }
+                Console.ReadLine();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.InnerException.ToString());
+            }
+
+
+        }
+
+
+        public static void resved2()
+        {
+            try
+            {
+               
+
+                SubscribeSocket subscriber = new SubscribeSocket();
+                subscriber.Connect("tcp://" + "127.0.0.1" + ":" + "8001");
+                Console.WriteLine("NANOMQ UDP_Reciever Start DataAddress: " + "tcp://" + "127.0.0.1" + ":" + "8001");
+                subscriber.Subscribe(BitConverter.GetBytes(Convert.ToInt64(555)));
+                while (true)
+                {
+                strucsp s = new strucsp();
+              
+                    var buffer = subscriber.Receive();
+                    s = (strucsp)DataPacket.RawDeserialize((buffer.Skip(8).ToArray()), typeof(strucsp));
+                    Console.WriteLine("" + s.Name);
+                    Console.WriteLine("" + s.LastName);
+                    Console.WriteLine("" + s.age);
+//=============================================   ================== 
+                    PublishSocket PubClient = new PublishSocket();
+                    string str = "127.0.0.1" + ":" + "8002";
+                    PubClient.Bind("tcp://" + str);
+                    Console.WriteLine("Nana Mcast Addrs: " + "tcp://" + str);
+                    Console.WriteLine("Enter Ans ");
+                      string sp = Console.ReadLine();
+                   
+                    var intBytes = BitConverter.GetBytes(Convert.ToInt64(555));
+                    intBytes = intBytes.Concat(Encoding.ASCII.GetBytes(sp)).ToArray();
+                    PubClient.Send(intBytes);
+
+                    //=================================================================
+                   
+                }
+                Console.ReadLine();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.InnerException.ToString());
+            }
+
+
+        }
+
+
+    }
+
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Pack = 1)]
+    public struct strucsp
+    {
+          [System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.ByValTStr,SizeConst=10)]
+        public string Name;
+        [System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.ByValTStr, SizeConst = 10)]
+        public string LastName;
+
+        public int age;
+
+    }
+}
+

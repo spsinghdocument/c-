@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication7
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            sp s = new sp();
+            //=====================================Action (return Void)
+            Action<int> ac = delegate(int a) { s.sum(a); };
+            ac(5);
+            //=====================================Predicate (return bool)
+
+            Predicate<int> pre = s.ad;
+            Console.WriteLine(pre(8));
+            //=================================================Func  (return )
+            Func<int, int> fun = delegate(int a) { return s.add(a); };
+            Console.WriteLine(fun(8));
+            //============================================== Comparison
+            Comparison<int> co = s.comp;
+            Console.WriteLine(co(5, 5));
+            //================================================Converter
+            Converter<int, double> conver = s.convert;
+            Console.WriteLine(conver(5));
+            Console.ReadLine();
+
+        }
+    }
+
+    public class sp
+    {
+        public void sum(int a) { Console.WriteLine("SUM = " + a + a); }
+      public bool ad(int a){ return 5 > a;}
+      public int add(int a) { return a + a; }
+      public int comp(int a, int b) { return a.CompareTo(b); }
+
+      public double convert(int a) { return a; }
+
+    }
+}
+
+
+//---------------------------------------------------
+http://www.codeproject.com/Articles/741064/Delegates-its-Modern-Flavors-Func-Action-Predicate

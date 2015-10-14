@@ -1,0 +1,42 @@
+   dt.Columns.Add("NetQty", typeof(int), "(BuyQty + SellQty)");
+
+//=============================SUM ===========================
+  lvlLTP.Text = Global.Instance.NetBookTable.AsEnumerable().Sum(x => x.Field<double>("LTP")).ToString();
+
+//-------------------------------------------
+ Bidding_Range = Convert.ToInt16(DGV1.Rows[RowIndex].Cells["BIDDING_RANGE"].Value == DBNull.Value ? "0" : DGV1.Rows[RowIndex].Cells["BIDDING_RANGE"].Value),
+
+
+OR 
+
+  string InstType = Convert.ToString(DGV1.SelectedRows[0].Cells["tok1inst"].Value == DBNull.Value ? "0" : DGV1.SelectedRows[0].Cells["tok1inst"].Value);
+
+//=================UPDATE
+
+  DataRow[] dr = SpreadTable.Select("PF  = '" + (_AddToken._objOut2.PFName).ToString() + "'");
+    if (dr.Length>0)
+dr[0]["PF"] = _AddToken._objOut2.PFName;
+
+//==============
+
+ DGV1.Columns["ratio4"].ReadOnly = true;
+
+//===============================================
+
+  var rowlist = SpreadTable.Rows.Cast<DataRow>().Where(x => Convert.ToInt32(x["Token1"]) ==IPAddress.HostToNetworkOrder(Stat.Parameter.Token) ||  Convert.ToInt32(x["Token2"]) == IPAddress.HostToNetworkOrder(Stat.Parameter.Token)||Convert.ToInt32(x["Token3"]) == IPAddress.HostToNetworkOrder(Stat.Parameter.Token)).ToList();
+ foreach (var i in rowlist2)
+                    {
+                        if (DGV1.Rows.Count == 0)
+                        {
+                            return;
+                        }
+
+  var task5 = Task.Factory.StartNew(() => (i["OptionType2"].ToString() == "CE" ? Convert.ToDouble(Delta_Cal.Instance.CallDelta(Convert.ToDouble(i["OppsitLTP2"].ToString()), Convert.ToDouble(i["StrikePrice2"].ToString()), Convert.ToDouble(DTE_in_Years2), Risk_free_rate2, Convert.ToDouble(i["OI2"].ToString()), Dividend_Yield2)) : Convert.ToDouble(Delta_Cal.Instance.PutDelta(Convert.ToDouble(i["OppsitLTP2"].ToString()), Convert.ToDouble(i["StrikePrice2"].ToString()), Convert.ToDouble(DTE_in_Years2), Risk_free_rate2, Convert.ToDouble(i["ATP2"].ToString()), Dividend_Yield2))).ToString("f4"));
+                        i["Delta2"] = task5.Result;
+
+//===========================================
+  i["NETDelta3"] = Delta_Cal.Instance.Get_NetDelta(Convert.ToDouble(i["Delta3"].ToString() == "NaN" ? 1 : i["Delta3"] == DBNull.Value ? "0" : i["Delta3"]), Convert.ToString(i["tok3inst"] == DBNull.Value ? "0" : i["tok3inst"]), Convert.ToDouble(i["ratio3"] == DBNull.Value ? "0" : i["ratio3"]), Convert.ToString(i["Tok3B_S"] == DBNull.Value ? "0" : i["Tok3B_S"]));
+
+
+}
+                    dr[0]["NEAR"] = _AddToken._objOut2.Desc1
