@@ -1,0 +1,35 @@
+
+#include <boost/bind.hpp>
+#include <boost/signals2.hpp>
+#include <iostream>
+
+
+using namespace boost::signals2;
+using namespace std;
+struct ClassA
+{
+    signal<void ()>    SigA;
+    signal<void (int,int)> SigB;
+};
+
+struct ClassB
+{
+    void PrintFoo()
+       {
+            cout << "Foo" << endl;
+        }
+    void PrintInt(int i,int j) { cout << "Bar: " << i << "second : "<< j << endl; }
+};
+
+int main()
+{
+    ClassA a;
+    ClassB b, b2;
+
+    a.SigA.connect(bind(&ClassB::PrintFoo, &b));
+   a.SigB.connect(bind(&ClassB::PrintInt, &b,4,2));
+   //a.SigB.connect(bind(&ClassB::PrintInt, &b2, 1));
+
+    a.SigA();
+    a.SigB(4,2);
+}

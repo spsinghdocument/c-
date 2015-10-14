@@ -1,0 +1,4 @@
+ std::string str_dec = "123";
+int num_dec = std::stoi(str_dec);
+
+cout << num_dec << endl;

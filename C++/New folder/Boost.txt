@@ -1,0 +1,19 @@
+#include <iostream>
+#include <string>
+#include "boost\variant.hpp"
+
+
+using namespace std;
+
+int main()
+{
+
+  boost::variant<int, string> u1,u2;
+u1= 45;
+u2 = " saurabh pratap " ;
+cout <<u1<< "    "  <<u2<< endl;
+boost::variant<int, string> u3;
+u3 =2345;
+cout << u3 << endl;
+    return 0;
+}
