@@ -1,0 +1,15 @@
+  using System.Diagnostics; 
+
+
+
+Stopwatch st = new Stopwatch();
+            st.Reset();
+            st.Start();
+
+
+
+
+
+
+  st.Stop();
+            MessageBox.Show(st.ElapsedTicks.ToString("#0:###:###:#"));

@@ -1,0 +1,10 @@
+ DataTable _table = new DataTable();
+
+
+   _table.Columns.Add("InstrumentName",typeof(string));
+DGV.DataSource = _table;
+.............................................................
+
+  DataRow dr = _table.NewRow();
+dr["InstrumentName"] = token;
+_table.Rows.Add(dr);

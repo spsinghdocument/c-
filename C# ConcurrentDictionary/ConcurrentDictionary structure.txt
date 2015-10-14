@@ -1,0 +1,22 @@
+ internal ConcurrentDictionary<int, FOPAIRDIFFLEG2> Refresh_dict = new ConcurrentDictionary<int, FOPAIRDIFFLEG2>();
+// ================================================= Add
+ Global.Instance.Refresh_dict.AddOrUpdate(_frmDIff.PORTFOLIONAME, _frmDIff, (k, v1) => _frmDIff);
+
+//============================================= give data
+  private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow dr in DGV1.Rows)
+            {
+                if (Global.Instance.Refresh_dict.ContainsKey(Convert.ToInt32(dr.Cells["PF"].Value)))
+                {
+                    dr.Cells["ORDQTY(B)"].Value = Global.Instance.Refresh_dict[Convert.ToInt32(dr.Cells["PF"].Value)].BuyMin;
+                    dr.Cells["BUYPRICE"].Value =Convert.ToDouble(Global.Instance.Refresh_dict[Convert.ToInt32(dr.Cells["PF"].Value)].SPREADBUY)/100;
+                    dr.Cells["SELLPRICE"].Value = Convert.ToDouble(Global.Instance.Refresh_dict[Convert.ToInt32(dr.Cells["PF"].Value)].SPREADSELL)/100;
+                    dr.Cells["ORDQTY(S)"].Value =Global.Instance.Refresh_dict[Convert.ToInt32(dr.Cells["PF"].Value)].SellMin;
+                    dr.Cells["TOTALQTY(B)"].Value = Global.Instance.Refresh_dict[Convert.ToInt32(dr.Cells["PF"].Value)].BuyMax;
+                    dr.Cells["TOTALQTY(S)"].Value =Global.Instance.Refresh_dict[Convert.ToInt32(dr.Cells["PF"].Value)].SellMax;
+                 
+                }
+            }
+
+        }

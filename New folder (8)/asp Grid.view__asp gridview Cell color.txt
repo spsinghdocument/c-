@@ -1,0 +1,8 @@
+ Label txtnum = (Label)GridView1.Rows[i].FindControl("lblnum");
+
+
+    if (dr.Length == 0)
+                    {
+                        txtnum.ForeColor = System.Drawing.Color.Red;
+                        
+                    }

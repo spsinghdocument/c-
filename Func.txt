@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Class1 a =new Class1();
+            Func<double> fun = delegate() { return a.add(2.5,3.4); };
+            Console.WriteLine(fun());
+            /////////////////////////////////////////////////////
+        
+            Func<double, double, double> fun2 = delegate(double aa, double b)
+            {
+
+                return aa + b;
+            };
+
+            Console.WriteLine(fun2(2, 3));
+            //-------------------------------------------------------
+            Func<double, double, double> fun3 = a.add;
+            
+            Console.WriteLine(fun3(45, 45));
+
+            //////////////////////////
+            Func<double, double, double> fun22 = delegate(double aa, double b)
+            {
+
+                return a.add(aa, b);
+            };
+
+            Console.WriteLine(fun22(2, 3));
+
+            //////////////////////////////////
+Console.ReadLine();
+        }
+    }
+}

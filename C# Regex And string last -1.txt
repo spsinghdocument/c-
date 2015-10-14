@@ -1,0 +1,9 @@
+ string strtxt = txt.Text.TrimEnd().TrimStart().Trim();
+
+if (Regex.IsMatch(strtxt[strtxt.Length - 1].ToString(), @"[=+-/*()]"))
+                    {
+                        
+
+
+
+        }

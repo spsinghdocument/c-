@@ -1,0 +1,76 @@
+A  n interface acts as a contract between itself and any class or struct which implements it.
+An interface looks like a class that can have a set of properties, methods, events and indexers, but has no implementation
+
+replacement of multiple inheritances of classes because C# does not support multiple inheritances of classes.
+
+
+interface cajn be used to create polymorphic behavior
+
+==============================================Inteface ===============================
+
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System;
+
+namespace InterfaceApplication
+{
+    // explicit1.cs
+    interface IDimensions
+    {
+        float Length();
+        string Width();
+    }
+
+    class Box : IDimensions
+    {
+        float lengthInches;
+        float widthInches;
+
+        public Box(float length, float width)
+        {
+            lengthInches = length;
+            widthInches = width;
+        }
+        // Explicit interface member implementation: 
+        float IDimensions.Length()
+        {
+            return lengthInches;
+        }
+        // Explicit interface member implementation:
+        string IDimensions.Width()
+        {
+            System.Console.WriteLine("saurabh pratap");
+            return "saurabh pratap hhh";
+        }
+
+       
+    }
+}
+================================================================ Class
+
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System;
+
+namespace InterfaceApplication
+{
+   
+
+    class sp
+    {
+        public static void Main()
+        {
+            // Declare a class instance "myBox":
+            Box myBox = new Box(30.0f, 20.0f);
+            // Declare an interface instance "myDimensions":
+            IDimensions myDimensions = (IDimensions)myBox;
+                          
+            System.Console.WriteLine("Length: {0}", myDimensions.Length());
+            System.Console.WriteLine("Width: {0}", myDimensions.Width());
+            System.Console.ReadLine();
+        }
+       
+    }
+}

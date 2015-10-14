@@ -1,0 +1,37 @@
+Visul studio Command Prompt(2010)-------csc s.cs ----s
+=========================== DLL
+csc /t:library s.cs		---- csc /r:s.dll pro.cs
+======================================================
+
+ ildasm
+===================
+cd\
+===========================
+e:
+===
+notepad
+================================
+dir
+=========  seard assimby =============
+1 . Generate the key by the command called 
+
+sn -k s.snk
+
+strong name key(RSA2)
+2 . Associate the key with source code , Now compile the program.
+  using System.Reflection;
+[assembly:AssemblyKeyFile("a.snk")]
+
+3.Install the DLL along with key in Global palce
+
+gacutil -i s.Dll
+
+(Global Assembly Cache Utility)   install
+(computer---c--Windows--Microsoft.NET---assemblly---GAC_MSIL---dll name folder
+
+4. Now Access the prog from different folder or Application
+
+
+csc /r:c:\ssss\s.dll sp.cs
+    
+

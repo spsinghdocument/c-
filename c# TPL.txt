@@ -1,0 +1,52 @@
+(TPL)Task Parallel Library is based on the concept of a task, which represents an asynchronous operation..
+Async programming.
+==============================================
+=window + R--- perfmon--Performance Monitor(click)---mouse Right(click)---clear--mouse Right(click)--
+Add counters----Processor(click)---%processor Time(select)-----0,1,2,3----add---Ok---(doune) color (Line)--mouse Right(click)--properties---
+Width(select)----Ok
+===================================== Parallel 
+using System.Threading;
+using System.Threading.Tasks;
+
+
+
+
+p.v.m()
+{
+
+Parallel.For(0,1000000,x=>sp());
+           
+            Console.ReadKey();
+
+}
+
+static void sp()
+        {
+
+            for (int j = 1; j <= 1000000; j++)
+            {
+                Console.WriteLine("sp" + j);
+            }
+        
+        }
+
+==================================================================
+=======================Main===
+Parallel.Invoke(F1);
+==========================other sp function parameter  ===========
+
+static void F1() { Console.WriteLine(sp("Saurabh Pratap singh")); }
+================================single loop ---------------
+ Parallel.For(0,10000000,x=>Console.WriteLine(x));
+
+=======================================Faster
+ Task.Factory.StartNew(() => sp("Saurabh Pratap singh"));
+======================================
+
+Task task = new Task(() => { sp("Saurabh Pratap singh"); });
+            task.Start();
+============================
+Task<string> Emp = Task.Factory.StartNew(() => sp("Saurabh Pratap singh"));
+               
+             Console.WriteLine(Emp.Result);
+===============================================================

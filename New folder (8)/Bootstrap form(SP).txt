@@ -1,0 +1,63 @@
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<br />
+<br />
+    <form id="form1" runat="server">
+    <div class="container">
+   
+   <div class="row">
+ 
+  <div class="col-sm-5 col-md-1" style=" padding:8px; border: 2px solid #a1a1a1;">NAME</div>
+   <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="padding:8px; border: 2px solid #a1a1a1;"><input id="txtCAF"  type="text"  style = "Width:100%; font-size:medium;font-family: 'Arial Narrow';border: 1px solid #c4c4c4;padding: 1px 1px 1px 4px;border-radius: 4px; -moz-border-radius: 4px;-webkit-border-radius: 4px; box-shadow: 0px 0px 8px #d9d9d9;"  PlaceHolder = "ENTR NAME NO." />     
+ </div>
+  
+
+  <div class="col-sm-5 col-md-1" style="padding:8px; border: 2px solid #a1a1a1;">Email</div>
+  <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style=" padding:8px; border: 2px solid #a1a1a1;"><input id="Text1"  type="text"  style = "Width:100%; font-size:medium;font-family: 'Arial Narrow';border: 1px solid #c4c4c4;padding: 1px 4px 1px 4px;border-radius: 4px; -moz-border-radius: 4px;-webkit-border-radius: 4px; box-shadow: 0px 0px 8px #d9d9d9;"  PlaceHolder = "ENTR Email NO." /></div>
+
+   <div class="col-sm-5 col-md-1" style="padding:8px; border: 2px solid #a1a1a1;">password</div>
+  <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="padding:8px; border: 2px solid #a1a1a1;"><input id="Text2"  type="password"  style = "Width:100%; font-size:medium;font-family: 'Arial Narrow';border: 1px solid #c4c4c4;padding: 1px 4px 1px 4px;border-radius: 4px; -moz-border-radius: 4px;-webkit-border-radius: 4px; box-shadow: 0px 0px 8px #d9d9d9;"  PlaceHolder = "ENTR Password" /></div>
+  
+</div>
+<div class="row">
+    <div class="col-sm-6 col-sm-push-6" style="background-color:lavender;">.col-sm-4 .col-sm-push-8</div>
+    <div class="col-sm-6 col-sm-pull-6" style="background-color:lavenderblush;">.col-sm-8 .col-sm-pull-4</div>
+  </div>
+
+      </div>
+    </form>
+</body>
+</html>
+====================================================
+  <div class="container">
+   
+   <div class="row">
+ 
+  <div class="col-sm-5 col-md-1" style=" padding:8px; ">NAME :</div>
+   <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="padding:8px; "><input id="txtCAF"  type="text"  style = "Width:100%; font-size:medium;font-family: 'Arial Narrow';border: 1px solid #c4c4c4;padding: 1px 1px 1px 4px;border-radius: 4px; -moz-border-radius: 4px;-webkit-border-radius: 4px; box-shadow: 0px 0px 8px #d9d9d9;"  PlaceHolder = "ENTR NAME NO." />     
+ </div>
+  
+
+  <div class="col-sm-5 col-md-1" style="padding:8px;">Email :</div>
+  <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style=" padding:8px; "><input id="Text1"  type="text"  style = "Width:100%; font-size:medium;font-family: 'Arial Narrow';border: 1px solid #c4c4c4;padding: 1px 4px 1px 4px;border-radius: 4px; -moz-border-radius: 4px;-webkit-border-radius: 4px; box-shadow: 0px 0px 8px #d9d9d9;"  PlaceHolder = "ENTR Email NO." /></div>
+
+   <div class="col-sm-5 col-md-1" style="padding:8px; ">password :</div>
+  <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="padding:8px; "><input id="Text2"  type="password"  style = "Width:100%; font-size:medium;font-family: 'Arial Narrow';border: 1px solid #c4c4c4;padding: 1px 4px 1px 4px;border-radius: 4px; -moz-border-radius: 4px;-webkit-border-radius: 4px; box-shadow: 0px 0px 8px #d9d9d9;"  PlaceHolder = "ENTR Password" /></div>
+  <div class="col-sm-5 col-md-1" style=" padding:8px; ">NAME :</div>
+   <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="padding:8px; "><input id="Text3"  type="text"  style = "Width:100%; font-size:medium;font-family: 'Arial Narrow';border: 1px solid #c4c4c4;padding: 1px 1px 1px 4px;border-radius: 4px; -moz-border-radius: 4px;-webkit-border-radius: 4px; box-shadow: 0px 0px 8px #d9d9d9;"  PlaceHolder = "ENTR NAME NO." />     
+ </div>
+  
+
+  <div class="col-sm-5 col-md-1" style="padding:8px;">Email :</div>
+  <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style=" padding:8px; "><input id="Text4"  type="text"  style = "Width:100%; font-size:medium;font-family: 'Arial Narrow';border: 1px solid #c4c4c4;padding: 1px 4px 1px 4px;border-radius: 4px; -moz-border-radius: 4px;-webkit-border-radius: 4px; box-shadow: 0px 0px 8px #d9d9d9;"  PlaceHolder = "ENTR Email NO." /></div>
+
+   <div class="col-sm-5 col-md-1" style="padding:8px; ">password :</div>
+  <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="padding:8px; "><input id="Password1"  type="password"  style = "Width:100%; font-size:medium;font-family: 'Arial Narrow';border: 1px solid #c4c4c4;padding: 1px 4px 1px 4px;border-radius: 4px; -moz-border-radius: 4px;-webkit-border-radius: 4px; box-shadow: 0px 0px 8px #d9d9d9;"  PlaceHolder = "ENTR Password" /></div>
+ <button type="button" onclick="sp();" class="btn btn-success">Success</button
+</div>
+
+
+      </div>

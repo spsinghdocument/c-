@@ -1,0 +1,64 @@
+Domain Name: sgtelecom.biz
+IP Address: 103.21.58.151
+FTP Username: sgtelzou
+FTP Password: K5!.qSlQwQgJ
+
+
+103.21.58.192
+
+host 
+:   ftp.sgtelecom.biz
+
+user name  : sgtelzou 
+
+www.sgtelecom.biz/Login_Page.aspx
+
+
+
+
+
+
+for mvc 
+ database 
+
+ user name  sgmayank
+pass : F@$tf0warD
+
+
+=============================================================================
+
+ user name  spsinghdb
+pass : sp@$123456
+
+
+http://103.21.58.151:8880/login_up.php3
+
+============================================================================================ORG =================================================
+
+http://74.63.239.42:9001/Default.aspx?pid=Login&ReturnUrl=%2fDefault.aspx%3fpid%3dHome
+
+User ID: sgtel-india
+
+ 
+
+Password: Softrock@!23$09@1!
+
+
+DATABASE
+ 	74.63.239.42
+
+ 	spsinghdb  
+pass : F@$tf0warD 
+
+
+
+///////////////////////////////////////////////////////////////////
+
+
+74.63.239.42,1232
+
+sanSoft
+
+SP@$singh1
+
+_sansoftSGdb

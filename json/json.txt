@@ -1,0 +1,86 @@
+============================================= Singel=============================================================
+
+ function spp() {
+             var strval = { 'name': 'saurabh', 'lastname': 'singh' };
+
+           
+            var Name = JSON.stringify(strval);
+
+             $.post('/sp/paysearch', { Name: Name }, function (data) { chkhh(data); }).error(function (data) { chkhh(data); });
+        }
+        function chkhh(abc) {
+
+
+
+            var cv = abc;
+        };
+=====================
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+
+ [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult paysearch(string Name)
+        {
+            string json = Name.Replace('/', ' ');
+ Movie m = JsonConvert.DeserializeObject<Movie>(json);
+          
+           string nameu = m.name;
+return Json(nameu, JsonRequestBehavior.AllowGet);
+
+}
+=======
+  class Movie
+    {
+
+        public string name { get; set; }
+        public string lastname { get; set; }
+
+
+    }
+
+============================================= List    =============================================================
+
+        function spp() {
+  
+            var strval = [{ 'name': 'saurabh', 'lastname': 'singh' }, { 'name': 'brajesh', 'lastname': 'yadav' },  { 'name': 'arif', 'lastname': 'khan' }];
+
+           
+            var Name = JSON.stringify(strval);
+
+             $.post('/sp/paysearch', { Name: Name }, function (data) { chkhh(data); }).error(function (data) { chkhh(data); });
+        }
+        function chkhh(abc) {
+
+            alert(abc);
+
+           
+        };
+======================
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+
+
+          [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult paysearch(string[] Name)
+        {
+            string json = Name[0].Replace('/', ' ');
+
+            List<Movie> m = JsonConvert.DeserializeObject<List<Movie>>(json);
+            string spp = m[0].name;
+            string spp1 = m[1].name;
+            string spp2 = m[2].lastname;
+
+
+            return Json(spp, JsonRequestBehavior.AllowGet);
+        }
+
+    }
+
+    class Movie
+    {
+
+        public string name { get; set; }
+        public string lastname { get; set; }
+
+
+    }

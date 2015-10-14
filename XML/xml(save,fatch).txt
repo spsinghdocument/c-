@@ -1,0 +1,164 @@
+void save()
+        {
+
+
+            XmlDocument MyXmlDocument = new XmlDocument();
+
+            if (!Directory.Exists(Application.StartupPath + Path.DirectorySeparatorChar + "SpreadProfiles"))
+            {
+                Directory.CreateDirectory(Application.StartupPath + Path.DirectorySeparatorChar + "SpreadProfiles");
+            }
+
+            if (!File.Exists(Application.StartupPath + Path.DirectorySeparatorChar + "SpreadProfiles" + Path.DirectorySeparatorChar + "Lostadtoken.xml"))
+            {
+
+                XmlDocument doc = new XmlDocument();
+                XmlNode rootNode = doc.CreateElement("spreadtrackerDetails");
+                doc.AppendChild(rootNode);
+                doc.Save(Application.StartupPath + Path.DirectorySeparatorChar + "SpreadProfiles" + Path.DirectorySeparatorChar + "Lostadtoken.xml");
+
+
+            }
+            try
+            {
+                if (File.Exists(Application.StartupPath + Path.DirectorySeparatorChar + "SpreadProfiles" + Path.DirectorySeparatorChar + "Lostadtoken.xml"))
+                {
+                    MyXmlDocument.Load(Application.StartupPath + Path.DirectorySeparatorChar + "SpreadProfiles" + Path.DirectorySeparatorChar + "Lostadtoken.xml");
+                    XmlNode node = MyXmlDocument.SelectSingleNode("spreadtrackerDetails/spreadtracker[ID =1]");
+                    if (node != null)
+                        node.ParentNode.RemoveChild(node);
+                }
+            }
+            catch { }
+
+
+
+
+            //  MyXmlDocument.Load(Application.StartupPath + "\\Profiles\\Lostadtoken.xml");
+
+            XmlElement ParentElement = MyXmlDocument.CreateElement("spreadtracker");
+            XmlElement ID = MyXmlDocument.CreateElement("ID");
+            ID.InnerText = "1";
+            XmlElement Strategy_Type = MyXmlDocument.CreateElement("Strategy_Type");
+            Strategy_Type.InnerText = Strategy_type_comboBox1.Text;
+            XmlElement Calc_Type = MyXmlDocument.CreateElement("Calc_Type");
+            Calc_Type.InnerText = Calc_typecomboBox1.Text;
+
+            XmlElement Exchange1 = MyXmlDocument.CreateElement("Exchange1");
+            Exchange1.InnerText = EXcomboBox1.Text;
+            XmlElement Order_Type1 = MyXmlDocument.CreateElement("Order_Type1");
+            Order_Type1.InnerText = ORcomboBox2.Text;
+            XmlElement Inst_Type1 = MyXmlDocument.CreateElement("Inst_Type1");
+            Inst_Type1.InnerText = INSTcomboBox3.Text;
+
+            XmlElement Symbol1 = MyXmlDocument.CreateElement("Symbol1");
+            Symbol1.InnerText = SYMcomboBox4.Text;
+            XmlElement Expiry1 = MyXmlDocument.CreateElement("Expiry1");
+            Expiry1.InnerText = EXPcomboBox5.Text;
+            XmlElement Lot_Size1 = MyXmlDocument.CreateElement("Lot_Size1");
+            Lot_Size1.InnerText = L_O_S.Text;
+            XmlElement Option_Type1 = MyXmlDocument.CreateElement("Option_Type1");
+            Option_Type1.InnerText = OPcomboBox6.Text;
+            XmlElement Strike_Price1 = MyXmlDocument.CreateElement("Strike_Price1");
+            Strike_Price1.InnerText = STRIKecomboBox7.Text;
+            XmlElement Ratio1 = MyXmlDocument.CreateElement("Ratio1");
+            Ratio1.InnerText = textBox_Ratio.Text;
+            XmlElement Buy_Sell = MyXmlDocument.CreateElement("Buy_Sell");
+            Buy_Sell.InnerText = cmd_buy_sell1.Text;
+            XmlElement Exchange2 = MyXmlDocument.CreateElement("Exchange2");
+            Exchange2.InnerText = EXcomboBox2.Text;
+            XmlElement Order_Type2 = MyXmlDocument.CreateElement("Order_Type2");
+            Order_Type2.InnerText = ORcomboBox3.Text;
+            XmlElement Inst_Type2 = MyXmlDocument.CreateElement("Inst_Type2");
+            Inst_Type2.InnerText = INSTcomboBox4.Text;
+
+            XmlElement Symbol2 = MyXmlDocument.CreateElement("Symbol2");
+            Symbol2.InnerText = SYMcomboBox5.Text;
+            XmlElement Expiry2 = MyXmlDocument.CreateElement("Expiry2");
+            Expiry2.InnerText = EXPcomboBox6.Text;
+            XmlElement Lot_Size2 = MyXmlDocument.CreateElement("Lot_Size2");
+            Lot_Size2.InnerText = L_O_S2.Text;
+            XmlElement Option_Type2 = MyXmlDocument.CreateElement("Option_Type2");
+            Option_Type2.InnerText = OPcomboBox7.Text;
+            XmlElement Strike_Price2 = MyXmlDocument.CreateElement("Strike_Price2");
+            Strike_Price2.InnerText = STRIKecomboBox8.Text;
+            XmlElement Ratio2 = MyXmlDocument.CreateElement("Ratio2");
+            Ratio2.InnerText = textBox_Ratio2.Text;
+            XmlElement Buy_Sel2 = MyXmlDocument.CreateElement("Buy_Sel2");
+            Buy_Sel2.InnerText = cmd_buy_sell2.Text;
+
+
+            ParentElement.AppendChild(ID);
+            ParentElement.AppendChild(Strategy_Type);
+            ParentElement.AppendChild(Calc_Type);
+            ParentElement.AppendChild(Exchange1);
+            ParentElement.AppendChild(Order_Type1);
+            ParentElement.AppendChild(Inst_Type1);
+            ParentElement.AppendChild(Symbol1);
+            ParentElement.AppendChild(Expiry1);
+            ParentElement.AppendChild(Lot_Size1);
+            ParentElement.AppendChild(Option_Type1);
+            ParentElement.AppendChild(Strike_Price1);
+            ParentElement.AppendChild(Ratio1);
+            ParentElement.AppendChild(Buy_Sell);
+            ParentElement.AppendChild(Exchange2);
+            ParentElement.AppendChild(Order_Type2);
+            ParentElement.AppendChild(Inst_Type2);
+            ParentElement.AppendChild(Symbol2);
+            ParentElement.AppendChild(Expiry2);
+            ParentElement.AppendChild(Lot_Size2);
+            ParentElement.AppendChild(Option_Type2);
+            ParentElement.AppendChild(Strike_Price2);
+            ParentElement.AppendChild(Ratio2);
+            ParentElement.AppendChild(Buy_Sel2);
+
+            MyXmlDocument.DocumentElement.AppendChild(ParentElement);
+            MyXmlDocument.Save(Application.StartupPath + Path.DirectorySeparatorChar + "SpreadProfiles" + Path.DirectorySeparatorChar + "Lostadtoken.xml");
+
+
+        }
+
+//================================================================
+
+ void show1()
+        {
+
+            XmlDocument MyXmlDocument = new XmlDocument();
+
+            if (!Directory.Exists(Application.StartupPath + Path.DirectorySeparatorChar + "SpreadProfiles"))
+            {
+                Directory.CreateDirectory(Application.StartupPath + Path.DirectorySeparatorChar + "SpreadProfiles");
+            }
+
+
+
+            if (File.Exists(Application.StartupPath + Path.DirectorySeparatorChar + "SpreadProfiles" + Path.DirectorySeparatorChar + "Lostadtoken.xml"))
+            {
+                MyXmlDocument.Load(Application.StartupPath + Path.DirectorySeparatorChar + "SpreadProfiles" + Path.DirectorySeparatorChar + "Lostadtoken.xml");
+
+                XmlNode node = MyXmlDocument.SelectSingleNode("spreadtrackerDetails/spreadtracker[ID =1]");
+                Strategy_type_comboBox1.Text = (node.SelectSingleNode("Strategy_Type").InnerText);
+                Calc_typecomboBox1.Text = (node.SelectSingleNode("Calc_Type").InnerText);
+                EXcomboBox1.Text = (node.SelectSingleNode("Exchange1").InnerText);
+                ORcomboBox2.Text = (node.SelectSingleNode("Order_Type1").InnerText);
+                INSTcomboBox3.Text = (node.SelectSingleNode("Inst_Type1").InnerText);
+                SYMcomboBox4.Text = (node.SelectSingleNode("Symbol1").InnerText);
+                EXPcomboBox5.Text = (node.SelectSingleNode("Expiry1").InnerText);
+                L_O_S.Text = (node.SelectSingleNode("Lot_Size1").InnerText);
+                OPcomboBox6.Text = (node.SelectSingleNode("Option_Type1").InnerText);
+                STRIKecomboBox7.Text = (node.SelectSingleNode("Strike_Price1").InnerText);
+                textBox_Ratio.Text = (node.SelectSingleNode("Ratio1").InnerText);
+                cmd_buy_sell1.Text = (node.SelectSingleNode("Buy_Sell").InnerText);
+
+                EXcomboBox2.Text = (node.SelectSingleNode("Exchange2").InnerText);
+                ORcomboBox3.Text = (node.SelectSingleNode("Order_Type2").InnerText);
+                INSTcomboBox4.Text = (node.SelectSingleNode("Inst_Type2").InnerText);
+                SYMcomboBox5.Text = (node.SelectSingleNode("Symbol2").InnerText);
+                EXPcomboBox6.Text = (node.SelectSingleNode("Expiry2").InnerText);
+                L_O_S2.Text = (node.SelectSingleNode("Lot_Size2").InnerText);
+                OPcomboBox7.Text = (node.SelectSingleNode("Option_Type2").InnerText);
+                STRIKecomboBox8.Text = (node.SelectSingleNode("Strike_Price2").InnerText);
+                textBox_Ratio2.Text = (node.SelectSingleNode("Ratio2").InnerText);
+                cmd_buy_sell2.Text = (node.SelectSingleNode("Buy_Sel2").InnerText);
+            }
+        }

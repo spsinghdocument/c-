@@ -1,0 +1,107 @@
+//=========================================== Class event create ===(eventCreat.cs)================================
+
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+
+namespace ConsoleApplication4
+{
+   public class EventCreat
+    {
+        internal event EventHandler<ReadOnlyEventArgs<int>> SS; 
+       private static  readonly EventCreat Insate=new EventCreat();
+
+       public static EventCreat EventR
+        {
+           get { return Insate; }
+
+        }
+
+       public void f8()
+       {
+           event_Innvoke obj=new event_Innvoke();
+           SS.Invoke(SS,SS.CreateOnlyEventArgs(2));
+       }
+
+
+    }
+
+    public class ReadOnlyEventArgs<T> : EventArgs
+    {
+        public ReadOnlyEventArgs(T input)
+        {
+            Parameter = input;
+        }
+
+        public T Parameter
+        {
+            get; private set; }
+    }
+    public static class EventHandlerExtensions
+    {
+        public static ReadOnlyEventArgs<T> CreateOnlyEventArgs<T>(this EventHandler<ReadOnlyEventArgs<T>>handler,T input )
+        {
+         return  new ReadOnlyEventArgs<T>(input);
+        }
+
+       
+    }
+
+
+}
+
+//====================================================== Class Event bind  (event_Innvoke.cs)=======================================
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication4
+{
+   public class event_Innvoke
+    {
+       public event_Innvoke()
+       {
+           EventCreat.EventR.SS += f7;
+           EventCreat.EventR.SS += f10;
+       }
+        public void f7(object sender,ReadOnlyEventArgs<int>e)
+        {
+            
+            Console.WriteLine("sourabh"+e.Parameter);
+        }
+
+
+
+
+        public void f10(object sender, ReadOnlyEventArgs<int> e)
+        {
+
+            Console.WriteLine("sourabh pratap singh");
+        }
+    }
+}
+//============================================== Event Fatch (Program.cs)===================================================
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            EventCreat.EventR.f8();
+            Console.ReadLine();
+        }
+    }
+}

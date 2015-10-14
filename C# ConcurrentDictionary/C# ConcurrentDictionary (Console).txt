@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections.Concurrent;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        
+        static void Main(string[] args)
+        {
+             ConcurrentDictionary<int, ad> _conDic = new ConcurrentDictionary<int, ad>();
+             ad a;
+            a.RolNo = 1;
+            a.firstName = "Saurabh pratap";
+            a.LastName = "Singh";
+            _conDic.AddOrUpdate(a.RolNo, a, (k, v1) => a);
+            a.RolNo = 2;
+            a.firstName = "Arif";
+            a.LastName = "Khan";
+          
+            _conDic.AddOrUpdate( a.RolNo, a, (k, v1) => a);
+            int i;
+            Console.WriteLine("PLZ Insert Number ");
+
+        i =  Convert.ToInt32(  Console.ReadLine());
+                if (_conDic.ContainsKey(i))
+                {
+                
+                    Console.WriteLine("First Name = " + _conDic[i].firstName);
+                    Console.WriteLine("Last Name = " + _conDic[i].LastName);
+
+                }
+                Console.ReadLine();
+        }
+        
+    }
+
+    struct ad
+    {
+        public int RolNo;
+        public string firstName;
+
+        public string LastName;
+       
+
+    }
+}

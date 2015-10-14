@@ -1,0 +1,128 @@
+using System.Xml;
+
+............................SELECT GRIDVIEW ......................
+
+
+
+ DataSet ds = new DataSet();
+              string s = Application.StartupPath;
+             ds.ReadXml(s+ "\\MyXmlFile.xml");
+ dataGridView1.DataSource = ds.Tables[0];
+.........................................................COboBox Show...........................
+
+ DataSet ds = new DataSet();
+            ds.ReadXml(s + "\\MyXmlFile.xml");
+            if (ds != null && ds.HasChanges())
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+
+                    comboBox1.Items.Add(ds.Tables[0].Rows[i][0].ToString());
+
+                }
+
+
+
+            }
+
+
+...........................................................................................Main   Select ................................................
+
+ XmlDocument doccc = new XmlDocument();
+                    doccc.Load(s + "\\Rms_set_Limit.xml");
+                    XmlNodeList nodeListtt = doccc.SelectNodes("//StudentDetailss/Student[EntityId='" + textBox_Entity_id.Text + "']");
+ foreach (XmlNode nodee in node)
+                        {
+                            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            string a = "";
+                            a = (nodee.SelectSingleNode("EntityId").InnerText);
+
+                           
+
+                        }
+
+
+
+
+
+
+
+..............................................Delete.............................................................
+
+string acnum = textBox_delete.Text;
+
+            string path = s + "\\MyXmlFile.xml";
+            XmlDocument doc = new XmlDocument();
+            doc.Load(path);
+ XmlNode node  = doc.SelectSingleNode("//StudentDetails/Student[ Name='" + acnum + "']");
+            node.ParentNode.RemoveChild(node);
+            doc.Save(path);
+
+            MessageBox.Show("Selected Record Deleted Successfully");
+
+
+..............................................INSERT................................................
+
+
+ XmlDocument MyXmlDocument = new XmlDocument();
+
+            MyXmlDocument.Load(s + "\\MyXmlFile.xml");
+
+            XmlElement ParentElement = MyXmlDocument.CreateElement("Student");
+
+            XmlElement ID = MyXmlDocument.CreateElement("ID");
+
+            ID.InnerText = textBox_id.Text;
+
+            XmlElement Name = MyXmlDocument.CreateElement("Name");
+
+            Name.InnerText = textBox_name.Text;
+
+            XmlElement Course = MyXmlDocument.CreateElement("Course");
+
+            Course.InnerText = textBox_course.Text;
+
+            XmlElement College = MyXmlDocument.CreateElement("College");
+
+            College.InnerText = textBox_college.Text;
+
+            ParentElement.AppendChild(ID);
+
+            ParentElement.AppendChild(Name);
+
+            ParentElement.AppendChild(Course);
+
+            ParentElement.AppendChild(College);
+
+            MyXmlDocument.DocumentElement.AppendChild(ParentElement);
+
+            // MyXmlDocument.Save(Server.MapPath("~/MyXmlFile.xml"));
+            MyXmlDocument.Save(s + "\\MyXmlFile.xml");
+            MessageBox.Show("Records added Successfully");
+
+
+................................................................................
+...........................................................................Not Insert Duplicate ..........................
+
+string str ="";
+
+ DataSet ds = new DataSet();
+            ds.ReadXml(s + "\\Rms_set_Limit.xml");
+            if (ds != null && ds.HasChanges())
+            {
+ for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                        {
+                            str = (ds.Tables[0].Rows[i][0].ToString());
+
+
+                            if (textBox_Entity_id.Text == (ds.Tables[0].Rows[i][0].ToString()))
+                            {
+                                MessageBox.Show("Duplicate Entity Id");
+
+                                return;
+                                
+}
+                            }
+                           
+
+                        }

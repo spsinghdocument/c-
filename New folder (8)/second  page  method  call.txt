@@ -1,0 +1,55 @@
+using System.Web.Compilation;
+using System.Reflection;
+
+//   public partial class Default2
+
+//  public partial class Default2
+
+  protected void Button1_Click(object sender, EventArgs e)
+    {
+
+        ///   pATH  ///////////
+        Assembly ptr = BuildManager.GetCompiledAssembly("~\\Default2.aspx");
+
+
+        /////     class name ///////
+        Type t = ptr.GetType("Default2");
+        object o = Activator.CreateInstance(t);
+        ////////////function name
+        MethodInfo m = t.GetMethod("show");
+       object f = m.Invoke(o, null);
+        Response.Write(f.ToString());
+
+    }
+
+//////////////////////////////////////////// second page function call ///////
+ public string show()
+    {
+
+        return "SAURABH PRATAP SINGH";
+    }
+//////////////////////////////////////////////////////////////////////////////// Parameter function //////////////////////////
+
+
+ protected void Button2_Click(object sender, EventArgs e)
+    {
+        Assembly ptr = BuildManager.GetCompiledAssembly("~\\Default2.aspx");
+        Type t = ptr.GetType("Default2");
+        object o = Activator.CreateInstance(t);
+        MethodInfo m = t.GetMethod("show2");
+       // object f = m.Invoke(o,null);
+        object h=5;
+        object f = m.Invoke(o, new object[] { 100,30 });
+        Response.Write(f.ToString());
+    }
+////////////////////////////////////////////////////////////////////////////////////////// second page function call //////////////////
+
+ public object show2(object a, object b)
+    {
+        int w = (int)a;
+        int x = (int)b;
+        int sum = w + x;
+
+        object c = sum;
+        return c;
+    }
