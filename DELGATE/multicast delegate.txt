@@ -1,0 +1,29 @@
+  class Program
+    {
+
+        delegate int mydel(int n);
+        static void Main(string[] args)
+        {
+            sp s = new sp();
+            mydel m = new mydel(s.add);
+            mydel m1 = new mydel(s.add2);
+            mydel temp = m + m1;
+            Delegate [] x =temp.GetInvocationList();
+            Console.WriteLine(x[0].DynamicInvoke(2));
+            Console.WriteLine(x[1].DynamicInvoke(2));
+            Console.ReadLine();
+        }
+    }
+
+  public  class sp
+    {
+        public int add(int a)
+        {
+            return a;
+        }
+
+        public int add2(int a)
+        {
+            return a + 2;
+        }
+    }

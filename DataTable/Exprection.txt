@@ -1,0 +1,33 @@
+        SpreadTable.Columns.Add("TRP33", typeof(double));
+         //   SpreadTable.Columns.Add("CMP_B_S", typeof(string));
+
+            string CMPExp = "IIF(Tok1B_S = 'BUY' , (NASK *ratio1* -1 ),NBID) + IIF(Tok2B_S = 'BUY' , (FASK * ratio2 *-1) ,FBID ) + IIF(Tok3B_S = 'BUY' , (F_ASK * ratio3 *-1),F_BID)";
+           
+            SpreadTable.Columns.Add("CMP(B)", typeof(Double), CMPExp);
+
+            string CMPSell = "IIF(Tok1B_S = 'BUY' , (NBID *ratio1),NASK *ratio1 * -1) + IIF(Tok2B_S = 'BUY' , (FBID * ratio2) ,FASK * ratio2 *-1 ) + IIF(Tok3B_S = 'BUY' , (F_BID * ratio3),F_ASK * ratio3 *-1)";
+
+          //  RetVal = BS == "Buy" ? (Math.Round(Convert.ToDouble(FP.Parameter.MAXBID) / 100, 4) * Ratio) : (Math.Round(Convert.ToDouble(FP.Parameter.MINASK) / 100, 4) * Ratio * -1);
+            SpreadTable.Columns.Add("CMP(S)", typeof(Double), CMPSell);
+            string cost1 = "IIF(Tok1B_S = 'BUY' , IIF(tok1inst='OPTIDX', NASK * ratio1 * 2*0.0007 , NASK * ratio1 * 2 *0.00009 ),IIF(tok1inst='OPTIDX', NBID * ratio1 * 2*0.0007 , NBID * ratio1 * 2 *0.00009 ))";
+          //  SpreadTable.Columns.Add("tok1_cost", typeof(double),cost1);
+            string cost2 = "IIF(Tok2B_S = 'BUY' , IIF(tok2inst='OPTIDX', FASK * ratio1 * 2*0.0007 , FASK * ratio1 * 2 *0.00009 ),IIF(tok2inst='OPTIDX', FBID * ratio1 * 2*0.0007 , FBID * ratio1 * 2 *0.00009 ))";
+           // SpreadTable.Columns.Add("tok2_cost", typeof(double), cost2);
+
+
+            string cost3 = "IIF(Tok3B_S = 'BUY' , IIF(tok3inst='OPTIDX', F_ASK * ratio1 * 2*0.0007 , F_ASK * ratio1 * 2 *0.00009 ),IIF(tok3inst='OPTIDX', F_BID * ratio1 * 2*0.0007 , F_BID * ratio1 * 2 *0.00009 ))";
+          //  SpreadTable.Columns.Add("tok3_cost", typeof(double), cost3);
+
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append(cost1);
+            sb.Append("+");
+            sb.Append(cost2);
+            sb.Append("+");
+            sb.Append(cost3);
+            
+
+
+            string cost = sb.ToString();
+
+            SpreadTable.Columns.Add("cost", typeof(double),cost);
