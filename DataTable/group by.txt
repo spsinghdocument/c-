@@ -1,0 +1,13 @@
+ var query = from row in Global.Instance.NetBookTable.AsEnumerable()
+                            group row by row.Field<string>("TredingSymbol") into grp
+
+                            orderby grp.Key
+                            select new
+                            {
+                                TredingSymbol = grp.Key,
+                               
+                                NetQty = grp.Sum(r => r.Field<int>("NetQty")),
+                                BuyQty = grp.Sum(r => r.Field<int>("BuyQty")),
+                                SellQty = grp.Sum(r => r.Field<int>("SellQty"))
+                                
+                            };

@@ -1,0 +1,26 @@
+ XElement xelement = XElement.Load("E:\\SAURABH\\New folder (2)\\ZEROmq\\ConsoleApplication14\\ConsoleApplication14\\bin\\Debug\\sp.xml");
+            IEnumerable<XElement> employees = xelement.Elements();
+            Console.WriteLine("List of all Employee Names :");
+            foreach (var employee in employees)
+            {
+                Console.WriteLine(employee.Element("Name").Value);
+            }
+
+            Console.WriteLine("====================================================");
+            var name = from nm in xelement.Elements("Employee")
+                       where (string)nm.Element("Sex") == "Female"
+                       select nm;
+           
+            foreach (XElement xEle in name)
+               // Console.WriteLine(xEle);
+                Console.WriteLine(xEle.Element("Name").Value);
+
+                   Console.WriteLine("====================================================");
+
+            var addresses = from address in xelement.Elements("Employee")
+                            where (string)address.Element("Address").Element("City") == "Ghazipur"
+               select address;
+
+            foreach (XElement xEle in addresses)
+                Console.WriteLine(xEle.Element("Address").Element("City").Value);
+            Console.ReadLine();
