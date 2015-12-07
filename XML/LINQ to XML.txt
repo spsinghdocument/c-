@@ -24,3 +24,35 @@
             foreach (XElement xEle in addresses)
                 Console.WriteLine(xEle.Element("Address").Element("City").Value);
             Console.ReadLine();
+
+
+//=================
+
+            //=============  UpDate
+            XElement xEmp = XElement.Load("E:\\SAURABH\\New folder (2)\\ZEROmq\\ConsoleApplication14\\ConsoleApplication14\\bin\\Debug\\sp.xml");
+
+            Console.WriteLine("====================================================");
+
+            var empDetails = from emps in xEmp.Elements("Employee")
+                             where emps.Element("Name").Element("FirstName").Value.Equals("Henry")
+                             select emps;
+            //
+            empDetails.First().Element("Age").Value = "6066";
+            //
+
+
+            xEmp.Save("E:\\SAURABH\\New folder (2)\\ZEROmq\\ConsoleApplication14\\ConsoleApplication14\\bin\\Debug\\sp.xml");
+
+
+
+            //============================Delete
+
+           // XElement xEmp = XElement.Load(@"D:\Employees.xml");
+            //
+            var empDetails1 = from emps in xEmp.Elements("Employee")
+                              where emps.Element("Name").Element("FirstName").Value.Equals("Bill")
+                             select emps;
+            //
+            empDetails1.First().Remove();
+            //
+            xEmp.Save("E:\\SAURABH\\New folder (2)\\ZEROmq\\ConsoleApplication14\\ConsoleApplication14\\bin\\Debug\\sp.xml");
