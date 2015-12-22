@@ -1,0 +1,52 @@
+The observer design pattern enables a subscriber to register with and receive notifications from a provider.
+generally class is of the given event needs
+class to provide notifications to clients of that class when some interesting thing happens to an object. The most familiar use for events is in graphical user interfaces;
+Events are declared using delegates.
+multicast delegate += or -= is The methods correspond to add and remove operations.
+the delegate(s) given to it by its clients are invoked.
+Events are members of the class that raises them. When some thing happens a class can raise an event
+Events are used for inter-process communication.
+
+
+//==================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace ConsoleApplication18
+{
+
+    class a :Form
+    
+    {
+        Button b1;
+        public a()
+        {
+            b1 = new Button();
+            b1.Name = "Click me";
+
+            this.Controls.Add(b1);
+
+            this.b1.Name = "button1";
+            this.b1.TabIndex = 1;
+            this.b1.Text = "Refress";
+            this.b1.UseVisualStyleBackColor = true;
+            this.b1.Click += new System.EventHandler(this.myfunction);
+        }
+
+        private void myfunction(object sender, EventArgs e)
+        {
+            MessageBox.Show("sddddd");
+        }
+
+        static void Main(string[] args)
+        {
+            a a1 = new a();
+            a1.ShowDialog();
+        }
+    
+    }
+  
+}

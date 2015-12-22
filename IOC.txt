@@ -1,0 +1,111 @@
+Inversion of Control (IoC) 
+
+The DI container or IoC container is a software framework used to create dependencies and inject them automatically when required
+
+2 Dependecy Injection is you inject class's depedencies into through a constructor . rether than instantiatiing them in the class
+
+
+-------------Dowunlad---Nuget--Unity
+======== interface
+interface ImDeff
+    {
+        void Test();
+    }
+===========class
+  public class Students:ImDeff
+    {
+       public void Test()
+       {
+           Console.WriteLine("Shalin pratap sngh");
+
+       }
+    }
+=====================
+public  class Home:ImDeff
+    {
+      public void Test()
+      {
+          Console.WriteLine("Saurabh pratap sngh");
+
+      }
+
+    }
+
+=================Main cass -----
+using Microsoft.Practices.Unity;
+
+
+ class Program
+    {
+       
+        static void Main(string[] args)
+        {
+            IUnityContainer container = new UnityContainer();
+            container.RegisterType<Home>();
+            container.RegisterType<ImDeff, Students>();
+            Home obj = container.Resolve<Home>();
+            Students obj2 = container.Resolve<Students>();
+            obj.Test();
+            obj2.Test();
+            Console.ReadLine();
+        }
+    }
+
+//============================================================================================================
+
+------------------------------------Second--------
+-----interface
+public  interface ImDeff
+    {
+        void Test();
+    }
+
+----------Class
+
+ public class Students : ImDeff
+    {
+        public void Test()
+        {
+            Console.WriteLine("Shalin pratap sngh");
+
+        }
+    }
+-----------------------Class---
+public class Home : ImDeff
+    {
+        public void Test()
+        {
+            Console.WriteLine("Saurabh pratap sngh 444444444444");
+
+        }
+
+    }
+-----------------------------
+   public class College
+    {
+        private ImDeff _events = null;
+
+        public College(ImDeff index)
+        {
+            _events = index;
+        }
+
+        public void sp()
+    {
+        _events.Test();
+
+    }
+    }
+-------------------------------Main class-
+ class Program
+    {
+       
+       
+        static void Main(string[] args)
+        {
+            College c=new College(new Students());
+
+           c.sp();
+            Console.ReadLine();
+        }
+    }
