@@ -1,0 +1,31 @@
+Enumerable is the base interface for all non-generic collections that can be enumerated. 
+adding and removing elements and to clear the collection
+
+
+myList[elementIndex]
+
+
+
+//====================
+using System.Collections.Generic;
+
+using System.Linq;
+
+
+int[] emno = new int[]{55,7,9,66,43,58,75,1,8,2,4,3 };
+
+            var a =emno.Where(s=>s>10).ToArray();
+     
+ICollection<int> df = a.Where(s => s < 10).ToList();
+           IEnumerable<int> b = emno.Where(s => s > 10).ToList();
+           IQueryable<int> c = emno.Where(s => s > 9).AsQueryable().Take(emno.Length);
+
+           foreach (var f in c)
+           {
+               Console.Write("\t"+f);
+           
+           }
+
+           IList<int> e = emno.Where(s => s > 10).ToList();
+
+           IEnumerator<int> enumerator = emno.Where(s => s > 9).GetEnumerator();
