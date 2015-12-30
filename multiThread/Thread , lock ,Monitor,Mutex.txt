@@ -1,0 +1,40 @@
+ only one thread at a time 
+Monitor and lock is the way to provide thread safet
+BOTH time to avoid any functional breaking of code.
+
+The Monitor Class Provides a mechanism that synchronizes access to object
+
+==----
+object ob = new object();
+  lock (ob)
+                {
+
+}
+//========================================================
+static readonly object _object = new object(); 
+ Monitor.Enter(_object);  ////////////////////////////// 
+                try   
+                { 
+
+
+    }   
+              finally   
+                {   
+                    Monitor.Exit(_object);   ///////////////////////
+               }  
+
+
+//////////// Mutex
+used for interprocess synchronization.
+blocks of code are executed only once at a time
+
+
+      static Mutex mutex = new Mutex(true, "{8F6F0AC4-B9A1-45fd-A8CF-72F04E6BDE8F}");
+ if(mutex.WaitOne(TimeSpan.Zero, true)) 
+{
+''''
+ mutex.ReleaseMutex();
+        } 
+else {
+            MessageBox.Show("only one instance at a time");
+        }
