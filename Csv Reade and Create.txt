@@ -1,0 +1,151 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Text;
+using System.Runtime.InteropServices;
+//using Structure;
+using str;
+using System.Threading.Tasks;
+using System.Linq;
+using System.Collections.Concurrent;
+
+namespace CSVCreater_BHV
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            CSV_Class_BHV.contract_fun();
+        }
+    }
+    public class CSV_Class_BHV
+    {
+       
+        public static ConcurrentBag<Contract_File_BHV_CSV> BhvCsvLIST = new ConcurrentBag<Contract_File_BHV_CSV>();
+     //   public static List<Contract_File_BHV_CSV> BhvCsvLIST = new List<Contract_File_BHV_CSV>();
+      
+
+        public static void contract_fun()
+        {
+            Contract_File_BHV_CSV obj = new Contract_File_BHV_CSV();
+
+            int cnt = 0;
+
+            //	string path = Console.ReadLine ();
+            StreamReader sr = new StreamReader(Environment.CurrentDirectory + "/fo29DEC2015bhav.csv");
+
+            string line;
+
+            string[] row = null;
+
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                row = line.Split(',', '|');
+                if (cnt == 0)
+
+                {
+                    //obj.obj_contract_header.NEATFO = Encoding.ASCII.GetBytes(row[0].ToString());
+                    //obj.obj_contract_header.VersionNumber = Encoding.ASCII.GetBytes(row[2].ToString());
+                    //BhvCsvLIST.Add(obj);
+                }
+                else
+                {
+                    int j = 0;
+                    
+                    obj.INSTRUMENT =row[j++];
+                   
+                    obj.SYMBOL = Convert.ToString(row[j++]);
+                    obj.EXPIRY_DT = Convert.ToString(row[j++]);
+                    obj.STRIKE_PR = Convert.ToDouble( row[j++]);
+                   // Console.WriteLine("" + obj.InstrumentName);
+                    obj.OPTION_TYP = Convert.ToString( row[j++]);
+                    //Console.WriteLine("" + obj.Symbol);
+                    obj.OPEN =Convert.ToDouble(row[j++]);
+                    //j++;
+                    obj.HIGH = Convert.ToDouble(row[j++]);
+                    obj.LOW = Convert.ToDouble(row[j++]);
+                    obj.CLOSE = Convert.ToDouble( row[j++]);
+                    obj.SETTLE_PR = Convert.ToDouble(row[j++]);
+                    obj.CONTRACTS = Convert.ToDouble(row[j++]);
+                    obj.VAL_INLAKH = Convert.ToDouble(row[j++]);
+                    obj.OPEN_INT = Convert.ToDouble(row[j++]);
+                    obj.CHG_IN_OI = Convert.ToDouble(row[j++]);
+                    obj.TIMESTAMP = Convert.ToString(row[j++]);
+                   
+
+                  
+                 
+                   if (obj.INSTRUMENT != null && obj.INSTRUMENT != "")
+                    {
+                        BhvCsvLIST.Add(obj);
+                    }
+                 }
+                cnt++;
+                 }
+            // || a.Symbol == "NIFTY" 
+             //var newlist = BhvCsvLIST.Where(a => (a.Symbol == "ACC" || a.Symbol =="ADANIPORT" || a.Symbol == "AJANTPHARM"
+             //     || a.Symbol == "AMARAJABAT" || a.Symbol == "APOLLOHOSP" || a.Symbol == "ARVIND" || a.Symbol =="ASIANPAINT"
+             //     || a.Symbol =="AUROPHARMA" || a.Symbol == "AXISBANK" || a.Symbol == "BANKBARODA" || a.Symbol =="BIOCON"
+             //     || a.Symbol == "BOSCHLTD" || a.Symbol == "CANBK" || a.Symbol == "CENTURYTEX" || a.Symbol == "CIPLA"
+             //     || a.Symbol == "COALINDIA" || a.Symbol == "CROMPGREAV" || a.Symbol == "DABUR" || a.Symbol == "DIVISLAB"
+             //     || a.Symbol == "DLF" || a.Symbol == "DRREDDY" || a.Symbol == "EICHERMOT" || a.Symbol == "GAIL"
+             //     || a.Symbol == "GRASIM" || a.Symbol == "HDFCBANK" || a.Symbol == "HINDALCO" || a.Symbol == "ICICIBANK"
+             //     || a.Symbol == "IDEA" || a.Symbol == "IDFC" || a.Symbol == "INFY" || a.Symbol == "IRB"
+             //     || a.Symbol == "JINDALSTEL" || a.Symbol == "JSWSTEEL" || a.Symbol == "KOTAKBANK" || a.Symbol == "LT"
+             //     || a.Symbol == "MRF" || a.Symbol == "NMDC" || a.Symbol == "NTPC" || a.Symbol == "OFSS"
+             //     || a.Symbol == "ONGC" || a.Symbol == "ORIENTBANK" || a.Symbol == "PFC" || a.Symbol == "RECLTD"
+             //     || a.Symbol == "RELCAPITAL" || a.Symbol == "RELIANCE" || a.Symbol == "RELINFRA" || a.Symbol == "SBIN"
+             //     || a.Symbol == "SIEMENS" || a.Symbol == "SUNPHARMA" || a.Symbol == "SUNTV" || a.Symbol == "SYNDIBANK"
+             //     || a.Symbol == "TATAMTRDVR" || a.Symbol == "TATASTEEL" || a.Symbol == "TCS" || a.Symbol == "TECHM"
+             //     || a.Symbol == "TITAN" || a.Symbol == "UBL" || a.Symbol == "VOLTAS" || a.Symbol == "WIPRO"                 
+             //     || a.Symbol == "BHARTIARTL" || a.Symbol == "BPCL" || a.Symbol == "CAIRN" || a.Symbol == "CESC"
+             //     || a.Symbol == "YESBANK" || a.Symbol == "ZEEL" || a.Symbol == "ABIRLANUVO" || a.Symbol == "APOLLOTYRE"
+             //     || a.Symbol == "AMBUJACEM" || a.Symbol == "BANKINDIA" || a.Symbol == "BATAINDIA" || a.Symbol == "BHARATFORG"
+             //     || a.Symbol == "COLPAL" || a.Symbol == "EXIDEIND" || a.Symbol == "FEDERALBNK" || a.Symbol == "HCLTECH"
+             //     || a.Symbol == "HDIL" || a.Symbol == "HINDPETRO" || a.Symbol == "IGL" || a.Symbol == "JUBLFOOD"
+             //     || a.Symbol == "KTKBANK" || a.Symbol == "MINDTREE" || a.Symbol == "MOTHERSUMI" || a.Symbol == "TATAGLOBAL"
+             //     || a.Symbol == "ULTRACEMCO" || a.Symbol == "UPL" || a.Symbol == "HEXAWARE" || a.Symbol == "ADANIPORTS"
+             //     || a.Symbol == "GLENMARK" || a.Symbol == "PAGEIND" || a.Symbol == "BRITANNIA"
+
+             //     || a.Symbol == "BANKNIFTY" || a.Symbol == "CNXIT" || a.Symbol == "NIFTY" || a.Symbol == "UCOBANK"
+             //     || a.Symbol == "BAJFINANCE" || a.Symbol == "PIDILITIND" 
+             //     )
+                
+               
+               
+           // var newlist = BhvCsvLIST.Where(a => (a.INSTRUMENT == "FUTIDX" && a.SYMBOL == "BANKNIFTY") || (a.EXPIRY_DT == "12/31/2015" && a.STRIKE_PR == 0 && a.OPTION_TYP == "XX" && a.OPEN == 16980.55 && a.HIGH == 17056)).ToList();
+
+            var newlist = BhvCsvLIST.Where(a => (a.INSTRUMENT == "FUTIDX" && a.SYMBOL == "BANKNIFTY") || ( a.STRIKE_PR == 0 && a.OPTION_TYP == "XX")).ToList();
+          
+            
+            StreamWriter writer =
+            new StreamWriter(Environment.CurrentDirectory + "/newcontract.csv");
+            int k = 1;
+            writer.WriteLine("" + "," + "" + "," + "11"+",");
+            foreach (var v in newlist)
+            {
+                if (k != 0)
+                {
+                 writer.WriteLine(v.INSTRUMENT +","+v.SYMBOL +","+v.EXPIRY_DT +","+v.STRIKE_PR + "," + v.OPTION_TYP + "," + v.OPEN +
+                        "," + v.HIGH +","
+                       +v.LOW +","+v.CLOSE+","+v.SETTLE_PR+","+v.CONTRACTS+","
+                       
+                   
+                        +v.VAL_INLAKH + "," +v.OPEN_INT + "," +v.CHG_IN_OI + ","
+                    + v.TIMESTAMP );
+
+                }
+                
+                k++;
+              
+               
+            }
+            writer.Close();
+        }
+
+
+
+
+    }
+}
