@@ -1,0 +1,25 @@
+using System.Runtime.InteropServices;
+
+
+
+    class Trial
+    {
+        int i;
+        Decimal d;
+    }
+    struct Sample
+    {
+        private int x;
+        private Single y;
+       private Trial z;
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Sample samp = new Sample();
+            Console.WriteLine("str size ="+Marshal.SizeOf(samp));
+            Console.ReadLine();
+
+        }
+    }
