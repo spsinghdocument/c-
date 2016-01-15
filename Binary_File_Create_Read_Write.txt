@@ -1,0 +1,101 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+ 
+
+public   class BinaryDataCreat
+    {
+     private static readonly BinaryDataCreat instance = new BinaryDataCreat();
+
+     public static BinaryDataCreat Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+     BinaryWriter bw;
+     BinaryReader br;
+   
+
+  public void createBinary(int dat, string Symbol, int Token, string Time, float Open, float High, float Low, float Close, float Volume)
+     {
+      
+         try
+         {
+             using (bw = new BinaryWriter(new FileStream(Global.Instance.MetaDataPath + Path.DirectorySeparatorChar + dat + Path.DirectorySeparatorChar + Symbol, FileMode.Create)))
+             {
+                 bw.Write(dat);
+                 bw.Write(Token);
+                 bw.Write(Time);
+                 bw.Write(Open);
+                 bw.Write(High);
+                 bw.Write(Low);
+                 bw.Write(Close);
+                 bw.Write(Volume);
+
+                 bw.Close();
+             }
+         }
+         catch (IOException e)
+         {
+             Console.WriteLine(e.Message + "\n Cannot create file.");
+             return;
+         }
+    
+        
+     
+
+     }
+//====================================Read  -----------------
+
+
+ static void Rea()
+        {
+            BinaryReader br;
+            ////  reading from the file
+            try
+            {
+                br = new BinaryReader(new FileStream("D:\\2 apr\\20160115\\"+"ACC1", FileMode.Open));
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message + "\n Cannot open file.");
+                return;
+            }
+            try
+            {
+              int  i = br.ReadInt32();
+                Console.WriteLine("dat: {0}", i);
+             int   b = br.ReadInt32();
+                Console.WriteLine("token: {0}", b);
+             string    tim = br.ReadString();
+                Console.WriteLine("time : {0}", tim);
+                float op = br.ReadSingle();
+                Console.WriteLine("open: {0}", op);
+             float hi    = br.ReadSingle();
+                Console.WriteLine("high : " + hi);
+                float low = br.ReadSingle();
+
+                Console.WriteLine("Low : " + low);
+
+                float clo = br.ReadSingle();
+
+                Console.WriteLine("Close : " + clo);
+                float vol = br.ReadSingle();
+
+                Console.WriteLine("Volume : " + vol);
+
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message + "\n Cannot read from file.");
+                return;
+            }
+            br.Close();
+
+            Console.ReadKey();
+        }}
